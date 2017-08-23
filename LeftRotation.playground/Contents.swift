@@ -1,8 +1,9 @@
-//: Playground - noun: a place where people can play
-// The number of left rotation
+import Foundation
+
 var d = 4
-var input = "a 2 c 43678 55"
-print("INPUT : \(input)")
+var n = "5 4"
+var input = "1 2 3 4 5"
+
 ////////////////////////////////
 
 var array:[String] = []
@@ -31,4 +32,5 @@ for x in array {
     output.append(" ")
 }
 
-print("OUTPUT : \(output)")
+print("\(output)")
+
