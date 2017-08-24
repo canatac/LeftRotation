@@ -1,50 +1,40 @@
 import Foundation
 
-var nb = "20 10"
-var input = "41 73 89 7 10 1 59 58 84 77 77 97 58 1 86 58 26 10 86 51"
+var nb = "5 4"
+var input = "1 2 3 4 5"
 ////////////////////////////////
 
-leftRotate(nb: nb, input: input)
 
 func leftRotate(nb:String, input:String){
     
-    var d:Int!  = Int(getArrayFromString(str: nb).last!)
-    var arr     = getArrayFromString(str: input)
-    
-    var n       = arr.count
+    let firstLineItems = nb.characters.split{ $0 == " "}.map({ Int(String($0))! })
+    let n = firstLineItems[0]
+    let d = firstLineItems[1]
+    var array = input.characters.split{ $0 == " " }.map{ Int(String($0))! }
     
     if n >= 1 && n <= 100000 {
         if d >= 1 && d <= n {
-            for i in 0..<d {
-                var y = arr[0]
-                arr.remove(at: 0)
-                arr.append(y)
+            var newArray = [Int](repeating : 0, count: n)
+            for i in 0..<n {
+                let a = array[i]
+                
+                if a <= 1000000 {
+                    
+                    var diff = i - d
+                    if diff < 0 {
+                        diff = n - abs(diff)
+                    }
+                    newArray[diff] = a
+                    
+                }
             }
-            
-            var output = ""
-            
-            for x in arr {
-                output.append(x)
-                output.append(" ")
-            }
-            
-            print("\(output)")
+            print(newArray.map{ String($0) }.joined(separator: " "))
         }
     }
 
 }
 
-func getArrayFromString(str:String)->[String]{
-    var arrayTmp:[String] = []
-    var strTmp = ""
-    for x in str.characters {
-        if x != " " {
-            strTmp.append(x)
-        } else {
-            arrayTmp.append(strTmp)
-            strTmp = ""
-        }
-    }
-    arrayTmp.append(strTmp)
-    return arrayTmp
-}
+
+
+leftRotate(nb: nb, input: input)
+
